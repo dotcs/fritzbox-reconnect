@@ -1,10 +1,18 @@
-const path = require("path");
+import path from "path";
+import fs from "fs";
+// TODO: Use import statement instead of require once types are updated.
+// See: https://github.com/winstonjs/winston/issues/1096
 const { createLogger, format, transports } = require("winston");
 const { combine, timestamp, label, printf } = format;
 
-const root = path.resolve(__dirname, "..");
+const rootDir = path.resolve(__dirname, "..");
+const logDir = path.join(rootDir, "log");
 
-const myFormat = printf(info => {
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir);
+}
+
+const myFormat = printf((info: any) => {
   return `${info.timestamp} [${info.label}] ${info.level}: ${info.message}`;
 });
 
@@ -21,11 +29,11 @@ const logger = createLogger({
     // - Write all logs error (and below) to `error.log`.
     //
     new transports.File({
-      filename: path.join(root, "log", "error.log"),
+      filename: path.join(logDir, "error.log"),
       level: "error"
     }),
-    new transports.File({ filename: path.join(root, "log", "all.log") })
+    new transports.File({ filename: path.join(logDir, "all.log") })
   ]
 });
 
-module.exports = logger;
+export default logger;

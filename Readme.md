@@ -6,7 +6,7 @@ It requires [node.js](https://nodejs.org/en/) (>= v.8.0.0) to be installed.
 
 ```bash
 # Start script
-FB_PW=my_secret_fritzbox_password yarn start
+FB_PW=my_secret_fritzbox_password yarn run check
 ```
 
 The following environment variables are available.

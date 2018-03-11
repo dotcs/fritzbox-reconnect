@@ -1,9 +1,7 @@
-const wait = timeInMs => {
+export const wait = (timeInMs: number) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
     }, timeInMs);
   });
 };
-
-module.exports = { wait };

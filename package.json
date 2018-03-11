@@ -1,11 +1,21 @@
 {
   "scripts": {
-    "start": "node src/index.js"
+    "start": "tsc --watch",
+    "check:dev": "node dist/index.js",
+    "precheck": "tsc",
+    "check": "node dist/index.js"
   },
   "dependencies": {
     "date-fns": "^1.29.0",
+    "lodash": "^4.17.5",
     "puppeteer": "^1.1.1",
     "webdriverio": "^4.12.0",
     "winston": "^3.0.0-rc2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.104",
+    "@types/node": "^9.4.7",
+    "@types/puppeteer": "^1.1.0",
+    "typescript": "^2.7.2"
   }
 }

@@ -5,6 +5,9 @@ Does restart the Fritz!Box in case no ipv4 or ipv6 connection is established.
 It requires [node.js](https://nodejs.org/en/) (>= v.8.0.0) to be installed.
 
 ```bash
+# Install dependencies
+yarn install
+
 # Start script
 FB_PW=my_secret_fritzbox_password yarn run check
 ```
@@ -26,7 +29,7 @@ The file `log/all.log` is created, new entries are attached.
 Sample log file:
 
 ```
-# combinded.log
+# log/all.log
 2018-03-11T13:36:59.576Z [Fritz!Box Reconnect] info: Fritz!Box is offline. Try to restart.
 2018-03-11T13:37:02.426Z [Fritz!Box Reconnect] info: Restart now
 2018-03-11T13:39:03.709Z [Fritz!Box Reconnect] info: Cooldown is active. Nothing to do.

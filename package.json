@@ -1,4 +1,17 @@
 {
+  "description":
+    "Simple script that checks whether a Fritz!Box router is online and restarts the router if required.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dotcs/fritzbox-reconnect"
+  },
+  "bugs": {
+    "url": "https://github.com/dotcs/fritzbox-reconnect/issues"
+  },
+  "author": {
+    "name": "Fabian Müller",
+    "url": "http://dotcs.me"
+  },
   "scripts": {
     "start": "tsc --watch",
     "check:dev": "node dist/index.js",
@@ -7,9 +20,7 @@
   },
   "dependencies": {
     "date-fns": "^1.29.0",
-    "lodash": "^4.17.5",
     "puppeteer": "^1.1.1",
-    "webdriverio": "^4.12.0",
     "winston": "^3.0.0-rc2"
   },
   "devDependencies": {

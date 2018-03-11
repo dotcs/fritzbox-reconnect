@@ -2,20 +2,21 @@ const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
 const differenceInMinutes = require("date-fns/difference_in_minutes");
+
 const logger = require("./logger");
+const { wait } = require("./utils");
+const config = require("./config");
 
-const COOLDOWN_TIME_IN_MIN = 3;
-const root = path.resolve(__dirname);
-const cooldownFp = path.resolve(root, "cooldown.json");
-const fritzBoxPw = process.env.FB_PW || "";
+const root = path.resolve(__dirname, "..");
+const cooldownFp = path.join(root, "config", "cooldown.json");
 
-const wait = timeInMs => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, timeInMs);
-  });
-};
+if (!config.password) {
+  logger.error(
+    "No password has been set, but it is requried to log into the" +
+      "webinterface. Abort."
+  );
+  exit(1);
+}
 
 (async () => {
   try {
@@ -25,7 +26,7 @@ const wait = timeInMs => {
         new Date(),
         content.timestampLastRestart
       );
-      if (diff < COOLDOWN_TIME_IN_MIN) {
+      if (diff < config.cooldownMin) {
         logger.info("Cooldown is active. Nothing to do.");
 
         await wait(100);
@@ -38,11 +39,11 @@ const wait = timeInMs => {
     page.setViewport({ width: 1600, height: 1800 });
     page.setDefaultNavigationTimeout(10000);
 
-    await page.goto("http://192.168.178.1/?lp=netMoni", {
+    await page.goto(`http://${config.ip}/?lp=netMoni`, {
       waitUntil: "networkidle2"
     });
 
-    await page.type("#uiPass", fritzBoxPw);
+    await page.type("#uiPass", config.password);
     await page.click("#submitLoginBtn");
     await page.waitFor("#ipv4_led");
 

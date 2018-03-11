@@ -27,7 +27,16 @@ Sample log file:
 
 ```
 # combinded.log
-2018-03-11T13:36:59.576Z [Fritz!Box Reconnector] info: Fritz!Box is offline. Try to restart.
-2018-03-11T13:37:02.426Z [Fritz!Box Reconnector] info: Restart now
-2018-03-11T13:39:03.709Z [Fritz!Box Reconnector] info: Cooldown is active. Nothing to do.
+2018-03-11T13:36:59.576Z [Fritz!Box Reconnect] info: Fritz!Box is offline. Try to restart.
+2018-03-11T13:37:02.426Z [Fritz!Box Reconnect] info: Restart now
+2018-03-11T13:39:03.709Z [Fritz!Box Reconnect] info: Cooldown is active. Nothing to do.
+```
+
+## Development
+
+```bash
+# run tsc watcher in one terminal window ...
+yarn start
+# ... and the dev-version (without compiling) of the check in another
+yarn run check:dev
 ```

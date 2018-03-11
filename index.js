@@ -55,7 +55,7 @@ const wait = timeInMs => {
       return { ipv4: ipv4Online, ipv6: ipv6Online };
     });
 
-    if (true || !connection.ipv4 || !connection.ipv6) {
+    if (!connection.ipv4 || !connection.ipv6) {
       logger.info("Fritz!Box is offline. Try to restart.");
 
       await page.click("#sys");
